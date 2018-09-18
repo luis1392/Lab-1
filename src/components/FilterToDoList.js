@@ -1,35 +1,8 @@
 import React, { Component } from "react";
-import ToDoItem from "./ToDoItem";
 
-class ToDoList extends Component {
-  renderList(tasksToDo) {
-    const list = tasksToDo
-      .filter(list => this.filterData(list))
-      .map(element => {
-        return (
-          <ToDoItem
-            key={element.id}
-            task={element}
-            onDelete={this.props.onDelete}
-          />
-        );
-      });
-
-    return list;
-  }
-
+class FilterToDoList extends Component {
   state = {
     activeFilter: "all"
-  };
-
-  filterData = task => {
-    if (this.state.activeFilter === "all") {
-      return true;
-    } else if (this.state.activeFilter === "complete") {
-      return task.isDone === true;
-    } else {
-      return task.isDone === false;
-    }
   };
 
   handleClickAll = () => {
@@ -48,7 +21,6 @@ class ToDoList extends Component {
       activeFilter: "incomplete"
     });
   };
-
   render() {
     return (
       <React.Fragment>
@@ -67,10 +39,8 @@ class ToDoList extends Component {
             <a>Incomplete</a>
           </li>
         </ul>
-        <ul className="list-group">{this.renderList(this.props.data)}</ul>
       </React.Fragment>
     );
   }
 }
-
-export default ToDoList;
+export default FilterToDoList;

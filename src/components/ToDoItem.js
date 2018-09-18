@@ -2,27 +2,31 @@ import React, { Component } from "react";
 
 class ToDoItem extends Component {
   state = {
-    done: this.props.task.isDone
+    isDone: this.props.task.isDone,
+    isCritical: this.props.task.isCritical
   };
+
   onChangeCheck = () => {
     this.setState({
-      done: !this.state.done
+      isDone: !this.state.isDone
     });
   };
 
   render() {
     const doneTask = "done-task ";
+    const criticalTask = "critical-task";
     return (
       <React.Fragment>
-        <li className={`list-group-item ${this.state.done ? doneTask : ""}`}>
+        <li className={`list-group-item  ${this.state.isDone ? doneTask : ""}`}>
           <input
             ref={this.doneCheckInput}
             type="checkbox"
             className="check-list"
-            checked={this.state.done}
+            checked={this.state.isDone}
             onChange={this.onChangeCheck}
           />
           {this.props.task.title}
+          <p className="date-task">{this.props.task.limitDate}</p>
           <button
             type="button"
             className="btn btn-danger delete-item"

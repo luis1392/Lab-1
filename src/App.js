@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Submit from "./components/Submit";
 import ToDoList from "./components/ToDoList";
+import FilterToDoList from "./components/FilterToDoList";
 
 class App extends Component {
   state = {
@@ -10,14 +11,16 @@ class App extends Component {
       {
         id: 1,
         title: "Clean the house",
-        isDone: true,
-        isCritical: false
+        isDone: false,
+        isCritical: true,
+        limitDate: "09/13/2018"
       },
       {
         id: 2,
         title: "Drink coffe",
-        isDone: false,
-        isCritical: false
+        isDone: true,
+        isCritical: false,
+        limitDate: "09/13/2018"
       }
     ]
   };
@@ -41,8 +44,9 @@ class App extends Component {
         <Header title="To Do List" />
         <div className="container-fluid">
           <div className="row">
-            <div className="col-md-4 col-md-offset-4">
+            <div className="col-md-10 col-md-offset-1">
               <Submit onSubmit={this.handleSubmit} />
+              {/* <FilterToDoList /> */}
             </div>
             <div className="col-md-10 col-md-offset-1">
               <ToDoList
